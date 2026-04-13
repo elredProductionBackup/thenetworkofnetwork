@@ -55,7 +55,7 @@ export const metadata: Metadata = {
     description:
       "We operate and build high-performance networks to help businesses grow and connect globally.",
     images: [
-      "https://thenetworkof.network/images/og-image.png",
+      "https://thenetworkof.network/images/og-image.webp",
     ],
   },
 };

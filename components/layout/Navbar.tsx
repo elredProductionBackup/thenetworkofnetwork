@@ -3,45 +3,34 @@ import Image from 'next/image';
 
 const Navbar = () => {
   return (
-    <nav className="absolute top-0 left-0 right-0 h-[60px] px-8 flex items-center justify-between z-50 transition-all duration-300">
-      <div className="flex items-center group">
+    <nav className="absolute top-0 left-0 right-0 px-[60px] py-[30px] h-[90px] flex items-center justify-between z-50 backdrop-blur-[6px] bg-[#FFFFFF1A] transition-all duration-300">
+      <div className="flex items-center group h-[32px] w-[220px]">
         <Link href="/" className="flex items-center">
-          <span className="font-extrabold text-[28px] leading-none tracking-[-0.02em] font-['Mencken_Std']">
-            <span className="text-[#656A6B]">the</span>
-            <span className="text-[#C01823]">Network</span>
-          </span>
+          <Image 
+            src="/asset/theNetwork.svg" 
+            alt="theNetwork logo" 
+            width={220} 
+            height={42} 
+            priority
+            className="object-contain"
+          />
         </Link>
       </div>
 
-      <ul className="flex items-center gap-8">
-        <li className="font-[family-name:var(--font-newsreader)] text-[16px] leading-[24px] tracking-[-0.4px] align-middle">
-          <Link href="/" className="relative flex flex-col items-center group">
-            <span className="font-light text-[#E4BEBA] group-hover:font-medium group-hover:text-[#EF4444] transition-all duration-300">
-              Home
-            </span>
-            <span className="block h-0 font-medium invisible overflow-hidden select-none pointer-events-none" aria-hidden="true">
-              Home
-            </span>
+      <ul className="flex justify-between items-center gap-8 h-[60px] w-[370px]">
+        <li>
+          <Link href="/" className="font-inter font-normal text-[24px] leading-none tracking-normal text-center align-middle text-[#515151] hover:font-semibold hover:text-[#C01522] transition-all duration-300">
+            Home
           </Link>
         </li>
-        <li className="font-[family-name:var(--font-newsreader)] text-[16px] leading-[24px] tracking-[-0.4px] align-middle">
-          <Link href="/contact" className="relative flex flex-col items-center group">
-            <span className="font-light text-[#E4BEBA] group-hover:font-medium group-hover:text-[#EF4444] transition-all duration-300">
-              Contact
-            </span>
-            <span className="block h-0 font-medium invisible overflow-hidden select-none pointer-events-none" aria-hidden="true">
-              Contact
-            </span>
+        <li>
+          <Link href="/contact" className="font-inter font-normal text-[24px] leading-none tracking-normal text-center align-middle text-[#515151] hover:font-semibold hover:text-[#C01522] transition-all duration-300">
+            Contact
           </Link>
         </li>
-        <li className="font-[family-name:var(--font-newsreader)] text-[16px] leading-[24px] tracking-[-0.4px] align-middle">
-          <Link href="/about" className="relative flex flex-col items-center group">
-            <span className="font-light text-[#E4BEBA] group-hover:font-medium group-hover:text-[#EF4444] transition-all duration-300">
-              About
-            </span>
-            <span className="block h-0 font-medium invisible overflow-hidden select-none pointer-events-none" aria-hidden="true">
-              About
-            </span>
+        <li>
+          <Link href="/about" className="font-inter font-normal text-[24px] leading-none tracking-normal text-center align-middle text-[#515151] hover:font-semibold hover:text-[#C01522] transition-all duration-300">
+            About
           </Link>
         </li>
       </ul>

@@ -45,7 +45,7 @@ const CARDS_DATA: CardData[] = [
     titleMultiline: true,
     titleSize: 'text-[35px]',
     description: 'A private network for ambitious professionals\nwho are coming together to learn & solve\nproblems',
-    overlayGradient: 'rgba(0, 0, 0, 0.6)',
+    overlayGradient: 'linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6))',
     alignment: 'justify-end',
     hasArrow: true,
   },
@@ -59,7 +59,7 @@ const CARDS_DATA: CardData[] = [
     titleMultiline: true,
     titleSize: 'text-[35px]',
     description: 'a smart tool built for network leadership and\nmanagement, it simplifies everything a network requires.',
-    overlayGradient: '',
+    overlayGradient: 'linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5))',
     alignment: 'justify-start',
     border: '0.5px solid rgba(182, 182, 182, 1)',
     innerImage: '/asset/insideCard3.png',
@@ -80,18 +80,20 @@ const CARDS_DATA: CardData[] = [
 const WebsiteCard = ({ card }: { card: CardData }) => {
   return (
     <div
-      className={`relative overflow-hidden h-full p-[40px] rounded-[32px] flex flex-col ${card.alignment} ${card.width}`}
-      style={{
-        backgroundImage: `linear-gradient(180deg, #131314 0%, rgba(19, 19, 20, 0.4) 50%, rgba(19, 19, 20, 0) 100%), url('${card.bgImage}')`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        border: card.border
-      }}
+      className={`relative overflow-hidden max-w-[1080px] h-full p-[40px] rounded-[32px] flex flex-col ${card.alignment} `}
+ style={{
+  backgroundImage: `${
+    card.overlayGradient ? `${card.overlayGradient},` : ''
+  } url('${card.bgImage}')`,
+  backgroundSize: 'cover',
+  backgroundPosition: 'center',
+  border: card.border
+}}
     >
-      <div
+      {/* <div
         className="absolute inset-0"
         style={{ background: card.overlayGradient }}
-      />
+      /> */}
 
       {card.hasArrow && (
         <div className="absolute top-[30px] right-[30px] z-20 w-[36px] h-[36px] rounded-full bg-white/30 backdrop-blur-sm flex items-center justify-center">
@@ -134,17 +136,22 @@ const WebsiteCard = ({ card }: { card: CardData }) => {
         </div>
 
         {card.innerImage && (
-          <div className="mt-[20px] flex-1 relative min-h-[392px] h-[551px]">
-            <div className="absolute inset-0 rounded-[11px] overflow-hidden">
-              <Image
-                src={card.innerImage}
-                alt="Card Internal Content"
-                fill
-                className="object-cover object-top -translate-y-[50px]"
-              />
-            </div>
-          </div>
-        )}
+  <div className="mt-[20px] flex-1 relative min-h-[392px] h-[551px]">
+    <div className="absolute inset-0 rounded-[11px] overflow-hidden">
+
+      <Image
+        src={card.innerImage}
+        alt="Card Internal Content"
+        fill
+        className="object-cover object-top -translate-y-[50px]"
+      />
+
+      {/* ✅ Linear gradient overlay */}
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5))]" />
+
+    </div>
+  </div>
+)}
       </div>
     </div>
   );

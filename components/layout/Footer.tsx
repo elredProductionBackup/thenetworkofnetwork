@@ -1,9 +1,8 @@
-import React from 'react';
 import Image from 'next/image';
 
 const Footer = () => {
   return (
-    <footer className="w-full h-[330px] bg-[#CCCCCC] px-[60px] py-[80px] flex flex-col gap-[50px] items-center justify-center">
+    <footer className="w-full h-[330px] bg-[#F2F2F2] px-[60px] py-[80px] flex flex-col gap-[50px] items-center justify-center">
       <div className="w-full h-[42px] max-w-[1536px] flex items-center justify-between">
         <div className="flex items-center justify-center w-[220px] h-[42px] overflow-hidden">
           <Image 

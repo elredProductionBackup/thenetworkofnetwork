@@ -17,10 +17,15 @@ const Navbar = () => {
         </Link>
       </div>
 
-      <ul className="flex justify-between items-center gap-8 h-[60px] w-[370px]">
-        <li>
+      <ul className="flex justify-between items-center gap-[80px] h-[60px]">
+        {/* <li>
           <Link href="/" className="font-inter font-normal text-[24px] leading-none tracking-normal text-center align-middle text-[#515151] hover:font-semibold hover:text-[#C01522] transition-all duration-300">
             Home
+          </Link>
+        </li> */}
+         <li>
+          <Link href="/why" className="font-inter font-normal text-[24px] leading-none tracking-normal text-center align-middle text-[#515151] hover:font-semibold hover:text-[#C01522] transition-all duration-300">
+            Why
           </Link>
         </li>
         <li>
@@ -28,11 +33,7 @@ const Navbar = () => {
             Contact
           </Link>
         </li>
-        <li>
-          <Link href="/about" className="font-inter font-normal text-[24px] leading-none tracking-normal text-center align-middle text-[#515151] hover:font-semibold hover:text-[#C01522] transition-all duration-300">
-            About
-          </Link>
-        </li>
+       
       </ul>
     </nav>
   );

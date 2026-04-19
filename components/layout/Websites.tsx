@@ -1,4 +1,5 @@
-import React from 'react';
+'use client'
+import React, { useState } from 'react';
 import Image from 'next/image';
 
 interface TitlePart {
@@ -77,18 +78,24 @@ const CARDS_DATA: CardData[] = [
   }
 ];
 
-const WebsiteCard = ({ card }: { card: CardData }) => {
+const WebsiteCard = ({
+  card,
+  onClick
+}: {
+  card: CardData;
+  onClick: (id: string) => void;
+}) => {
+
   return (
     <div
-      className={`relative overflow-hidden max-w-[1080px] h-full p-[40px] rounded-[32px] flex flex-col ${card.alignment} `}
- style={{
-  backgroundImage: `${
-    card.overlayGradient ? `${card.overlayGradient},` : ''
-  } url('${card.bgImage}')`,
-  backgroundSize: 'cover',
-  backgroundPosition: 'center',
-  border: card.border
-}}
+      className={`relative overflow-hidden max-w-[1080px] h-full p-[40px] rounded-[32px] flex flex-col ${card.alignment} cursor-pointer`}
+      style={{
+        backgroundImage: `${card.overlayGradient ? `${card.overlayGradient},` : ''
+          } url('${card.bgImage}')`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        border: card.border
+      }} onClick={() => onClick(card.id)}
     >
       {/* <div
         className="absolute inset-0"
@@ -97,7 +104,7 @@ const WebsiteCard = ({ card }: { card: CardData }) => {
 
       {card.hasArrow && (
         <div className="absolute top-[30px] right-[30px] z-20 w-[36px] h-[36px] rounded-full bg-white/30 backdrop-blur-sm flex items-center justify-center">
-          <Image 
+          <Image
             src="/asset/arrow.svg"
             alt="Link Arrow"
             width={14}
@@ -111,7 +118,7 @@ const WebsiteCard = ({ card }: { card: CardData }) => {
         <div className="flex flex-col gap-[16px]">
           {card.logo ? (
             <div className="relative h-[30px] w-fit">
-              <Image 
+              <Image
                 src={card.logo}
                 alt="Card Logo"
                 width={card.logoWidth || 180}
@@ -136,22 +143,22 @@ const WebsiteCard = ({ card }: { card: CardData }) => {
         </div>
 
         {card.innerImage && (
-  <div className="mt-[20px] flex-1 relative min-h-[392px] h-[551px]">
-    <div className="absolute inset-0 rounded-[11px] overflow-hidden">
+          <div className="mt-[20px] flex-1 relative min-h-[392px] h-[551px]">
+            <div className="absolute inset-0 rounded-[11px] overflow-hidden">
 
-      <Image
-        src={card.innerImage}
-        alt="Card Internal Content"
-        fill
-        className="object-cover object-top -translate-y-[50px]"
-      />
+              <Image
+                src={card.innerImage}
+                alt="Card Internal Content"
+                fill
+                className="object-cover object-top -translate-y-[50px]"
+              />
 
-      {/* ✅ Linear gradient overlay */}
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5))]" />
+              {/* ✅ Linear gradient overlay */}
+              <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.1),rgba(0,0,0,0.1))]" />
 
-    </div>
-  </div>
-)}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
@@ -160,9 +167,19 @@ const WebsiteCard = ({ card }: { card: CardData }) => {
 const Websites = () => {
   const upperCards = CARDS_DATA.slice(0, 2);
   const lowerCards = CARDS_DATA.slice(2, 4);
+  const [showPopup, setShowPopup] = useState(false);
 
+  const handleCardClick = (id: string) => {
+    if (id === "prive") {
+      window.open("https://theprive.network", "_blank");
+    } else if (id === "csuite") {
+      window.open("https://thecsuite.network", "_blank");
+    } else if (id === "thenetwork") {
+      setShowPopup(true);
+    }
+  };
   return (
-    <section className="relative w-full pt-0 pb-[100px] px-[32px] overflow-hidden border">
+    <section className="relative w-full pt-0 pb-[100px] px-[32px] overflow-hidden">
 
       {/* Background */}
       {/* <div 
@@ -193,15 +210,26 @@ const Websites = () => {
 
         {/* 🔥 TOP ROW (2/5 / 3/5) */}
         <div className="grid grid-cols-[4fr_5fr] gap-[30px] h-[460px]">
-          {upperCards.map(card => (
+          {/* {upperCards.map(card => (
             <WebsiteCard key={card.id} card={card} />
+          ))} */}
+          {upperCards.map(card => (
+            <WebsiteCard
+              key={card.id}
+              card={card}
+              onClick={handleCardClick}
+            />
           ))}
         </div>
 
         {/* 🔥 BOTTOM ROW (1 / 1) */}
         <div className="grid grid-cols-[5fr_4fr] gap-[24px] h-[550px]">
           {lowerCards.map(card => (
-            <WebsiteCard key={card.id} card={card} />
+            <WebsiteCard
+              key={card.id}
+              card={card}
+              onClick={handleCardClick}
+            />
           ))}
         </div>
         <div
@@ -228,6 +256,24 @@ const Websites = () => {
         </div>
 
       </div>
+      {showPopup && (
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50">
+          <div className="bg-white rounded-2xl p-8 max-w-sm text-center shadow-xl">
+            <h2 className="text-lg font-semibold mb-2 text-black">
+              Website Redesign is Underway
+            </h2>
+            <p className="text-sm text-gray-600 mb-4">
+              We’re currently improving the experience. Please check back soon.
+            </p>
+            <button
+              onClick={() => setShowPopup(false)}
+              className="px-4 py-2 bg-black text-white rounded-md cursor-pointer"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
     </section>
   );
 };

@@ -22,22 +22,7 @@ const HeroPart = () => {
           </span>
         </h1>
 
-        <div className="mt-16 flex flex-col items-center animate-fade-in delay-500">
-  <p className="font-inter text-[10px] tracking-[3px] uppercase text-zinc-500 mb-4">
-    Scroll to Enter
-  </p>
 
-  {/* Line wrapper */}
-  <div className="relative w-[1px] h-12 overflow-hidden mb-4">
-    
-    {/* Static faint line */}
-    <div className="absolute inset-0 bg-gradient-to-b from-zinc-200 to-transparent" />
-
-    {/* Animated line ONLY */}
-    <div className="absolute inset-0 bg-gradient-to-b from-zinc-500 to-transparent animate-scroll-line" />
-    
-  </div>
-</div>
       </div>
     </section>
   );

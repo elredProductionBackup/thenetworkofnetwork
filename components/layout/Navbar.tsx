@@ -36,7 +36,7 @@ const Navbar = () => {
         }`}
       >
         {/* LOGO */}
-        <Link href="/" className="flex items-center h-[32px] w-[160px] md:w-[220px]">
+        <Link href="/" className="flex items-center h-[17px] w-[120px] md:h-[32px] md:w-[220px]">
           <Image
             src="/asset/theNetwork.svg"
             alt="logo"
@@ -67,20 +67,23 @@ const Navbar = () => {
           </li>
         </ul>
 
-        {/* MOBILE MENU BUTTON */}
-        <button
-          className="md:hidden flex flex-col justify-between w-[24px] h-[18px]"
-          onClick={() => setIsOpen(true)}
-        >
-          <span className="block h-[2px] w-full bg-black"></span>
-          <span className="block h-[2px] w-full bg-black"></span>
-          <span className="block h-[2px] w-full bg-black"></span>
-        </button>
+<button
+  className="md:hidden flex items-center justify-center w-[24px] h-[24px]"
+  onClick={() => setIsOpen(true)}
+>
+  <Image
+    src="/asset/icons/bar.svg"
+    alt="menu"
+    width={24}
+    height={24}
+    className="object-contain"
+  />
+</button>
       </nav>
 
       {/* OVERLAY */}
       <div
-        className={`fixed inset-0 bg-black/30 z-40 transition-opacity duration-300 ${
+        className={`fixed inset-0 bg-black/30 z-60 transition-opacity duration-300 ${
           isOpen ? "opacity-100 visible" : "opacity-0 invisible"
         }`}
         onClick={() => setIsOpen(false)}
@@ -88,31 +91,40 @@ const Navbar = () => {
 
       {/* SIDEBAR */}
       <div
-        className={`fixed top-0 right-0 h-full w-[280px] bg-white z-50 transform transition-transform duration-300 ${
+        className={`fixed top-0 right-0 h-full w-[100%] max-w-[380px] bg-white z-60 transform transition-transform duration-300 ${
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
         {/* CLOSE BUTTON */}
-        <div className="flex justify-end p-6">
+        <div className="flex justify-end pt-[20px] pr-[20px]">
           <button onClick={() => setIsOpen(false)}>
             <span className="text-2xl">✕</span>
           </button>
         </div>
 
         {/* NAV ITEMS */}
-        <ul className="flex flex-col gap-8 px-8 mt-10">
+        <ul className="flex flex-col items-end gap-[20px] px-[20px] mt-[20px]">
+          <li>
+            <Link
+              href="/"
+              onClick={() => setIsOpen(false)}
+              className="text-[20px] text-[#515151]"
+            >
+              Home
+            </Link>
+          </li>
           <li>
             <Link
               href="/why"
               onClick={() => setIsOpen(false)}
-              className="text-[20px] text-[#333]"
+              className="text-[20px] text-[#515151]"
             >
               Why
             </Link>
           </li>
           <li>
             <a href="mailto:info@rextonedigital.com"
-              className="font-inter text-[20px] text-[#515151] hover:font-semibold hover:text-[#C01522] transition-all duration-300"
+              className="font-inter text-[20px] text-[#515151] hover:text-[#C01522] transition-all duration-300"
             >
               Contact
             </a>

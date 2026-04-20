@@ -31,7 +31,7 @@ const CARDS_DATA: CardData[] = [
     bgImage: '/asset/card1bg.png',
     title: [{ text: 'Prive', color: 'text-[#C01823]' }],
     titleSize: 'text-[52px]',
-    description: 'a private ecosystem for UHNI owners\nand individuals with disproportionate\nfuture impact',
+    description: 'a private ecosystem for UHNI owners\n and individuals with disproportionate\n future impact',
     overlayGradient: 'linear-gradient(218.56deg, rgba(0, 0, 0, 0.5) 2.02%, rgba(63, 63, 63, 0.5) 29.07%, rgba(222, 222, 222, 0.5) 97.2%)',
     alignment: 'justify-end',
     hasArrow: true,
@@ -45,7 +45,7 @@ const CARDS_DATA: CardData[] = [
     ],
     titleMultiline: true,
     titleSize: 'text-[35px]',
-    description: 'A private network for ambitious professionals\nwho are coming together to learn & solve\nproblems',
+    description: 'a network for ambitious professionals\n who are coming together to learn & solve\n problems',
     overlayGradient: 'linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6))',
     alignment: 'justify-end',
     hasArrow: true,
@@ -59,7 +59,7 @@ const CARDS_DATA: CardData[] = [
     ],
     titleMultiline: true,
     titleSize: 'text-[35px]',
-    description: 'a smart tool built for network leadership and\nmanagement, it simplifies everything a network requires.',
+    description: 'a smart tool built for network leadership and management, it simplifies everything a network  requires',
     overlayGradient: 'linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5))',
     alignment: 'justify-start',
     border: '0.5px solid rgba(182, 182, 182, 1)',
@@ -71,7 +71,7 @@ const CARDS_DATA: CardData[] = [
     logo: '/asset/theNetwork.svg',
     logoWidth: 180,
     logoHeight: 26,
-    description: 'A Collaboration platform for Network members.',
+    description: 'an app for network members',
     overlayGradient: 'linear-gradient(111.12deg, rgba(0, 0, 0, 0.7) 41.4%, rgba(66, 64, 64, 0.7) 98.48%)',
     alignment: 'justify-start',
     title: []
@@ -137,7 +137,7 @@ const WebsiteCard = ({
             </h2>
           )}
 
-          <p className={`font-inter font-semibold text-[24px] leading-[1.2] tracking-[-1.46px] whitespace-pre-line ${card.descriptionColor || 'text-white'}`}>
+          <p className={`font-inter font-[600] text-[24px] leading-[1.2] tracking-[-1.46px] whitespace-pre-line ${card.descriptionColor || 'text-white'}`}>
             {card.description}
           </p>
         </div>
@@ -190,23 +190,33 @@ const Websites = () => {
       /> */}
 
       <div className="max-w-[1536px] mx-auto w-full flex flex-col gap-[24px] relative z-10">
-        <div className="h-[496px] w-[1080px] mx-auto flex flex-col justify-center gap-6 text-[#333333] font-inter mb-16 text-center">
-          <p className="text-[22px] font-medium leading-[1.4]">
-            There are thousands of networks today; social, professional, charitable, and more. Yet most underutilise their greatest asset:<span className="font-extrabold italic"> the intelligence and lived experience of their own members.</span>
-          </p>
-          <p className="text-[22px] font-medium leading-[1.4]">
-            While many networks focus heavily on events and programming, few systematically unlock the <span className="font-extrabold italic">compounding value that exists within the membership itself.</span>
-          </p>
-          <p className="text-[22px] font-medium leading-[1.4]">
-            Our belief is simple:<span className="font-extrabold italic"> The future of high value networks lies not in more activity, but in deeper, more intelligent member-to-member value creation.</span>
-          </p>
-          <p className="text-[22px] font-medium leading-[1.4]">
-            We are building the world’s most intelligent learning and collaboration ecosystem, one where insight, experience, and access are intentionally activated so that <span className="font-extrabold italic">member intelligence compounds over time.</span>
-          </p>
-          <p className="text-[22px] font-medium leading-[1.4]">
-            Our approach focuses on carefully curated networks, each designed to deliver unique value to its members and, critically, to each other through structured initiatives, high trust interactions, and thoughtfully deployed AI tools.
-          </p>
-        </div>
+<div className="h-[496px] w-[1080px] mx-auto flex flex-col justify-center gap-6 text-[#333333] font-inter mb-16 text-center">
+  
+  <p className="text-[22px] font-medium leading-[1.4]">
+    There are thousands of networks today; social, professional, charitable, and more. Yet most underutilise their greatest asset:
+    <span className="font-extrabold italic"> the intelligence and lived experience of their own members.</span>
+  </p>
+
+  <p className="text-[22px] font-medium leading-[1.4]">
+    While many networks focus heavily on events and programming, few systematically unlock the
+    <span className="font-extrabold italic"> compounding value that exists within the membership itself.</span>
+  </p>
+
+  <p className="text-[22px] font-medium leading-[1.4]">
+    Our belief is simple:
+    <span className="font-extrabold italic"> The future of high value networks lies not in more activity, but in deeper, more intelligent member-to-member value creation.</span>
+  </p>
+
+  <p className="text-[22px] font-medium leading-[1.4]">
+    We are building the world’s most intelligent learning and collaboration ecosystem, one where insight, experience, and access are intentionally activated so that
+    <span className="font-extrabold italic"> member intelligence compounds over time.</span>
+  </p>
+
+  <p className="text-[22px] font-medium leading-[1.4]">
+    Our approach focuses on carefully curated networks, each designed to deliver unique value to its members and, critically, to each other through structured initiatives, high trust interactions, and thoughtfully deployed AI tools.
+  </p>
+
+</div>
 
         {/* 🔥 TOP ROW (2/5 / 3/5) */}
         <div className="grid grid-cols-[4fr_5fr] gap-[30px] h-[460px]">

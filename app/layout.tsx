@@ -1,16 +1,8 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Newsreader, Inter } from "next/font/google";
+import { Newsreader, Inter } from "next/font/google";
 import "./globals.css";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
 
 const newsreader = Newsreader({
   subsets: ["latin"],
@@ -21,9 +13,10 @@ const newsreader = Newsreader({
 
 const inter = Inter({
   subsets: ["latin"],
+  weight: ["400", "500","600","700", "800"],
+  style: ["normal", "italic"],
   variable: "--font-inter",
 });
-
 export const metadata: Metadata = {
   metadataBase: new URL("https://thenetworkof.network"),
 
@@ -68,13 +61,15 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${newsreader.variable} ${inter.variable} h-full antialiased`}
+      className={`${newsreader.variable} ${inter.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-[#131314]">
-        <main className="remove-mobile-screen flex-1 flex-col ">
+      <body>
+        <div className="remove-mobile-screen main-container">
+          <Navbar/>
           {children}
-        </main>
-        <main className="mobile-screen flex-1  w-[100%] items-center text-[20px] text-center justify-center">
+          <Footer/>
+        </div>
+        <main className="mobile-screen flex-1 w-[100%] items-center text-[20px] text-center justify-center">
           Mobile Screen
           Under Development
         </main>

@@ -189,7 +189,7 @@ export default function SummaryPlatforms() {
   return (
     <section className="relative w-full flex flex-col items-center justify-center px-4 md:px-10 py-[80px] pb-[40px]">
             
-      <h2 className="font-mencken font-normal text-[32px] md:text-[48px] leading-[120%] tracking-tight text-center text-black mb-12 md:mb-16">
+      <h2 className=" text-[32px] md:text-[48px] leading-[120%] tracking-tight text-center text-black mb-12 md:mb-16  font-mencken-regular">
         Summary of Sapiens by <br className="md:hidden" /> these platforms
       </h2>
 
@@ -258,7 +258,7 @@ const PlatformCard: React.FC<PlatformCardProps> = ({ image, onClick }) => (
 
     <div className="bg-[#fff] flex items-center justify-between px-3 md:px-6 h-[40px] md:h-[63px] border-l border-r border-[#F4EADB]">
       <span className="text-[12px] md:text-[19px] font-nunito font-semibold text-black">
-        More on this
+        Tap here
       </span>
 
       <div className="w-6 h-6 md:w-10 md:h-10 bg-[#FFEBED] rounded-full flex items-center justify-center text-white">

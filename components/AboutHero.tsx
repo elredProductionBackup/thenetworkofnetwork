@@ -20,16 +20,15 @@ export default function AboutHero() {
 
                 {/* Right Content */}
                 <div className="text-left pb-6 mx-2.5 md:mx-0">
-                    <p className="italic text-black mb-4 md:mb-6 font-nunito text-[16px] md:text-[19px]">
+                    <p className="italic text-black mb-4 md:mb-6 text-[16px] md:text-[19px]">
                         From the Book
                     </p>
 
                     {/* Text sizes mobile ke liye thodi choti ki hain taaki screen fit ho */}
-                    <div className="space-y-[40px] md:space-y-8 font-cardo text-[18px] md:text-[28px] text-black leading-relaxed md:pr-14">
-                        <p className="leading-[130%] md:leading-[120%]">
-                            “The secret of human success is flexible cooperation in large numbers.”
-                        </p>
-
+                    <div className="space-y-[40px] md:space-y-8 font-cardo text-[18px] md:text-[28px] text-black leading-relaxed md:pr-14  font-mencken-regular">
+                        <p className="leading-[100%] tracking-[1px]">
+  “The secret of human success is flexible cooperation in large numbers.”
+</p>
                         <p className="leading-[130%] md:leading-[120%]">
                             “Large numbers of strangers can cooperate by believing in common myths.”
                         </p>

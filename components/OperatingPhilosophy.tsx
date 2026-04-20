@@ -3,7 +3,7 @@ const OperatingPhilosophy = () => {
   return (
     <section className="py-[40px]  px-5 md:px-[70px] flex flex-col items-center">
       {/* Heading */}
-      <h2 className="font-mencken font-normal text-[30px] md:text-[48px] leading-[120%] tracking-[0px] text-center text-black mb-[60px]">
+      <h2 className="font-mencken-regular text-[30px] md:text-[48px] leading-[120%] tracking-[0px] text-center text-black mb-[60px]">
       Operating Philosophy
       </h2>
 
@@ -43,7 +43,7 @@ const OperatingPhilosophy = () => {
 
     <div className="space-y-4 font-inter text-[28px] leading-[150%] text-[#4A4A4A]">
       <p>
-        Borrowing from the quote :{" "}
+        {/* Borrowing from the quote :{" "} */}
         <span className="italic">Scale determines seriousness.</span>
       </p>
       <p>

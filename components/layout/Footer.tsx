@@ -24,9 +24,9 @@ const Footer = () => {
       <div className="w-full h-[28px] max-w-[1536px] flex items-center justify-between text-[#333333] font-inter font-medium text-[20px] leading-[28px] text-right">
         <p>© 2026 Rex-Tone Digital Private Limited. All Rights Reserved</p>
         <div className="flex items-center gap-4">
-          <a href="#" className="">Terms of Use</a>
+          {/* <a href="#" className="">Terms of Use</a>
           <span className="text-[#333333]">●</span>
-          <a href="#" className="">Privacy Policy</a>
+          <a href="#" className="">Privacy Policy</a> */}
         </div>
       </div>
     </footer>

@@ -3,8 +3,8 @@ import React from 'react';
 import Image from 'next/image';
 
 const CARDS = [
-  { id: 'prive', bgImage: '/images/privebg.png', overlay: '#00000080', logo: '/images/privelogo.svg', logoWidth: 112, logoHeight: 36, text: 'Privé is an enterprise network designed to elevate good teams into great ones.', tagline: undefined, textMaxWidth: 'max-w-[960px]', link: 'https://www.theprive.network/home/' },
-  { id: 'tpn', bgImage: '/images/tpnbg.png', overlay: undefined, logo: '/images/tpnlogo.svg', logoWidth: 293, logoHeight: 60, text: 'a network for ambitious professionals who are keen to learn from the best academic minds of the world', tagline: { text: 'Learn. Stay ahead.', highlight: 'Actionable intelligence' }, textMaxWidth: 'max-w-[720px]', link: 'https://www.theprofessionals.network/' },
+  { id: 'prive', background: "url('/images/privebg.png') center / cover", dotted: false, overlay: '#00000080', logo: '/images/privelogo.svg', logoWidth: 112, logoHeight: 36, text: 'Privé is an enterprise network designed to elevate good teams into great ones.', tagline: undefined, textMaxWidth: 'max-w-[960px]', link: 'https://www.theprive.network/home/' },
+  { id: 'tpn', background: 'radial-gradient(ellipse 55% 75% at 100% 100%, rgba(192, 24, 35, 0.7) 0%, rgba(192, 24, 35, 0) 100%), #18161A', dotted: true, overlay: undefined, logo: '/images/tpnlogo.svg', logoWidth: 293, logoHeight: 60, text: 'a network for ambitious professionals who are keen to learn from the best academic minds of the world', tagline: { text: 'Learn. Stay ahead.', highlight: 'Actionable intelligence' }, textMaxWidth: 'max-w-[720px]', link: 'https://www.theprofessionals.network/' },
 ];
 
 const Websites = () => {
@@ -52,15 +52,20 @@ const Websites = () => {
           {CARDS.map(card => (
             <div
               key={card.id}
-              className="w-full max-w-[1080px] h-[380px] md:h-[460px] rounded-[24px] md:rounded-[30px] overflow-hidden opacity-100 relative"
-              style={{
-                backgroundImage: `url('${card.bgImage}')`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-              }}
+              className="w-full max-w-[1280px] h-[380px] md:h-[400px] rounded-[24px] md:rounded-[30px] overflow-hidden opacity-100 relative"
+              style={{ background: card.background }}
             >
               {card.overlay && (
                 <div className="absolute inset-0" style={{ background: card.overlay }} />
+              )}
+              {card.dotted && (
+                <div
+                  className="absolute inset-0"
+                  style={{
+                    backgroundImage: 'radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px)',
+                    backgroundSize: '22px 22px',
+                  }}
+                />
               )}
               <Image
                 src={card.logo}
@@ -69,13 +74,19 @@ const Websites = () => {
                 height={card.logoHeight}
                 className="absolute top-[20px] left-[20px] md:top-[30px] md:left-[30px] z-10 object-contain w-auto h-[22px] md:h-auto max-w-[60%] md:max-w-none"
               />
-              <p className={`absolute left-0 right-0 mx-auto top-1/2 -translate-y-1/2 md:top-auto md:translate-y-0 md:bottom-[180px] z-10 ${card.textMaxWidth} px-[20px] text-white text-center font-['Mencken_Std'] font-normal not-italic text-[22px] md:text-[40px] leading-[120%] tracking-[0px]`}>
-                {card.text}
-              </p>
-              {card.tagline && (
-                <p className="absolute left-0 right-0 bottom-[24px] md:bottom-[60px] z-10 px-[16px] text-white text-center font-inter text-[13px] md:text-[32px] leading-[140%] md:leading-[120%]">
-                  {card.tagline.text}{' '}
-                  <span className="bg-[#C01823] font-semibold px-[4px] md:px-[8px]">{card.tagline.highlight}</span>
+              {card.tagline ? (
+                <div className={`absolute left-0 right-0 mx-auto top-1/2 -translate-y-1/2 z-10 ${card.textMaxWidth} px-[20px] flex flex-col items-center gap-[20px] md:gap-[40px]`}>
+                  <p className="text-white text-center font-['Mencken_Std'] font-normal not-italic text-[22px] md:text-[40px] leading-[120%] tracking-[0px]">
+                    {card.text}
+                  </p>
+                  <p className="text-white text-center font-inter text-[13px] md:text-[24px] leading-[140%] md:leading-[120%] md:whitespace-nowrap">
+                    {card.tagline.text}{' '}
+                    <span className="inline-block ml-[4px] md:ml-[8px] bg-[#C01823] font-semibold px-[6px] py-[2px] md:px-[12px] md:py-[4px]">{card.tagline.highlight}</span>
+                  </p>
+                </div>
+              ) : (
+                <p className={`absolute left-0 right-0 mx-auto top-1/2 -translate-y-1/2 md:top-auto md:translate-y-0 md:bottom-[180px] z-10 ${card.textMaxWidth} px-[20px] text-white text-center font-['Mencken_Std'] font-normal not-italic text-[22px] md:text-[40px] leading-[120%] tracking-[0px]`}>
+                  {card.text}
                 </p>
               )}
               <a
@@ -83,7 +94,7 @@ const Websites = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`Open ${card.id} website`}
-                className="absolute top-[14px] right-[14px] md:top-[30px] md:right-[30px] z-20 w-[28px] h-[28px] md:w-[36px] md:h-[36px] rounded-full bg-white/30 backdrop-blur-sm flex items-center justify-center">
+                className={`absolute top-[14px] right-[14px] md:top-[30px] md:right-[30px] z-20 w-[28px] h-[28px] md:w-[36px] md:h-[36px] rounded-full flex items-center justify-center ${card.dotted ? 'bg-[#2A272C] border border-white/20' : 'bg-white/30 backdrop-blur-sm'}`}>
                 <Image
                   src="/asset/arrow.svg"
                   alt="Link Arrow"

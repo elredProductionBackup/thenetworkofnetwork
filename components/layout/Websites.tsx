@@ -40,23 +40,6 @@ const CARDS_DATA: CardData[] = [
     logoHeight: 40,
   },
   {
-    id: 'csuite',
-    bgImage: '/asset/card2bg.png',
-    logo: '/asset/logo/csuite.svg',
-    title: [
-      { text: 'CSuite', color: 'text-[#C01823]' },
-      { text: 'Network', color: 'text-[#656A6B]' }
-    ],
-    titleMultiline: true,
-    titleSize: 'text-[35px]',
-    description: 'a network for ambitious professionals who are coming together to learn & solve problems',
-    overlayGradient: 'linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6))',
-    alignment: 'justify-end',
-    hasArrow: true,
-    logoWidth: 144,
-    logoHeight: 60,
-  },
-  {
     id: 'smart-network',
     bgImage: '/asset/card3bg.png',
     logo: '/asset/logo/smart-networks.svg',
@@ -96,7 +79,7 @@ const WebsiteCard = ({
 }) => {
 
   return (
-    <div className={`relative overflow-hidden max-w-[1080px] h-[360px] md:h-full p-[20px] md:p-[40px] rounded-[32px] flex flex-col ${card.alignment} cursor-pointer max-h-[550px]`}
+    <div className={`relative overflow-hidden h-[360px] md:h-full p-[20px] md:p-[40px] rounded-[32px] flex flex-col ${card.alignment} cursor-pointer max-h-[550px]`}
       style={{
         backgroundImage: `${card.overlayGradient ? `${card.overlayGradient},` : ''
           } url('${card.bgImage}')`,
@@ -173,16 +156,14 @@ const WebsiteCard = ({
 };
 
 const Websites = () => {
-  const upperCards = CARDS_DATA.slice(0, 2);
-  const lowerCards = CARDS_DATA.slice(2, 4);
+  const upperCards = CARDS_DATA.slice(0, 1);
+  const lowerCards = CARDS_DATA.slice(1, 3);
   const [showPopup, setShowPopup] = useState(false);
   const [showSmartPopup, setShowSmartPopup] = useState(false);
 
   const handleCardClick = (id: string) => {
     if (id === "prive") {
       window.open("https://theprive.network", "_blank");
-    } else if (id === "csuite") {
-      window.open("https://thecsuite.network", "_blank");
     } else if (id === "thenetwork") {
       setShowPopup(true);
     }
@@ -236,7 +217,7 @@ const Websites = () => {
             />
           ))}
         </div> */}
-        <div className="grid grid-cols-1 md:grid-cols-[4fr_5fr] gap-[30px] min-h-[360px] md:min-h-[460px]">
+        <div className="grid grid-cols-1 gap-[30px] min-h-[360px] md:min-h-[460px]">
           {upperCards.map(card => (
             <WebsiteCard
               key={card.id}

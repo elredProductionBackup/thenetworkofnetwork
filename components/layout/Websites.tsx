@@ -1,173 +1,13 @@
 'use client'
-import React, { useState } from 'react';
+import React from 'react';
 import Image from 'next/image';
 
-interface TitlePart {
-  text: string;
-  color: string;
-}
-
-interface CardData {
-  id: string;
-  bgImage: string;
-  title: TitlePart[];
-  titleMultiline?: boolean;
-  titleSize?: string;
-  description: string;
-  descriptionColor?: string;
-  overlayGradient: string;
-  alignment: 'justify-start' | 'justify-end';
-  border?: string;
-  innerImage?: string;
-  hasArrow?: boolean;
-  logo?: string;
-  logoWidth?: number;
-  logoHeight?: number;
-}
-
-const CARDS_DATA: CardData[] = [
-  {
-    id: 'prive',
-    bgImage: '/asset/card1bg.png',
-    logo: '/asset/logo/prive.svg',
-    title: [{ text: 'Privé', color: 'text-[#C01823]' }],
-    titleSize: 'text-[52px]',
-    description: 'a private ecosystem for UHNI owners and individuals with disproportionate future impact',
-    overlayGradient: 'linear-gradient(218.56deg, rgba(0, 0, 0, 0.5) 2.02%, rgba(63, 63, 63, 0.5) 29.07%, rgba(222, 222, 222, 0.5) 97.2%)',
-    alignment: 'justify-end',
-    hasArrow: true,
-    logoWidth: 126,
-    logoHeight: 40,
-  },
-  {
-    id: 'smart-network',
-    bgImage: '/asset/card3bg.png',
-    logo: '/asset/logo/smart-networks.svg',
-    title: [
-      { text: 'Smart', color: 'text-[#C01823]' },
-      { text: 'Networks', color: 'text-[#656A6B]' }
-    ],
-    titleMultiline: true,
-    titleSize: 'text-[35px]',
-    description: 'a smart tool built for network leadership and management, it simplifies everything a network  requires',
-    overlayGradient: 'linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5))',
-    alignment: 'justify-start',
-    border: '0.5px solid rgba(182, 182, 182, 1)',
-    innerImage: '/images/smart-networks.png',
-    logoWidth: 160,
-    logoHeight: 63,
-  },
-  {
-    id: 'thenetwork',
-    bgImage: '/asset/thenetworkscard.png',
-    logo: '/asset/theNetwork.svg',
-    logoWidth: 220,
-    logoHeight: 31,
-    description: 'an app for network members',
-    overlayGradient: 'linear-gradient(111.12deg, rgba(0, 0, 0, 0.7) 41.4%, rgba(66, 64, 64, 0.7) 98.48%)',
-    alignment: 'justify-start',
-    title: []
-  }
+const CARDS = [
+  { id: 'prive', bgImage: '/images/privebg.png', overlay: '#00000080', logo: '/images/privelogo.svg', logoWidth: 112, logoHeight: 36, text: 'Privé is an enterprise network designed to elevate good teams into great ones.', tagline: undefined, textMaxWidth: 'max-w-[960px]', link: 'https://www.theprive.network/home/' },
+  { id: 'tpn', bgImage: '/images/tpnbg.png', overlay: undefined, logo: '/images/tpnlogo.svg', logoWidth: 293, logoHeight: 60, text: 'a network for ambitious professionals who are keen to learn from the best academic minds of the world', tagline: { text: 'Learn. Stay ahead.', highlight: 'Actionable intelligence' }, textMaxWidth: 'max-w-[720px]', link: 'https://www.theprofessionals.network/' },
 ];
 
-const WebsiteCard = ({
-  card,
-  onClick
-}: {
-  card: CardData;
-  onClick: (id: string) => void;
-}) => {
-
-  return (
-    <div className={`relative overflow-hidden h-[360px] md:h-full p-[20px] md:p-[40px] rounded-[32px] flex flex-col ${card.alignment} cursor-pointer max-h-[550px]`}
-      style={{
-        backgroundImage: `${card.overlayGradient ? `${card.overlayGradient},` : ''
-          } url('${card.bgImage}')`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        border: card.border
-      }} onClick={() => onClick(card.id)}
-    >
-      {/* <div
-        className="absolute inset-0"
-        style={{ background: card.overlayGradient }}
-      /> */}
-
-      {card.hasArrow && (
-        <div className="absolute top-[30px] right-[30px] z-20 w-[36px] h-[36px] rounded-full bg-white/30 backdrop-blur-sm flex items-center justify-center">
-          <Image
-            src="/asset/arrow.svg"
-            alt="Link Arrow"
-            width={14}
-            height={14}
-            className="object-contain"
-          />
-        </div>
-      )}
-
-      <div className={`relative z-10 flex flex-col gap-[20px] h-full ${card.alignment}`}>
-        <div className="flex flex-col gap-[16px]">
-          {card.logo ? (
-            <div className="relative  w-fit">
-              <Image
-                src={card.logo}
-                alt="Card Logo"
-                width={card.logoWidth || 180}
-                height={card.logoHeight || 30}
-                className="object-contain object-left"
-              />
-            </div>
-          ) : (
-            <h2 className={`font-extrabold leading-[110%] tracking-[-0.46px] font-['Mencken_Std'] ${card.titleSize || 'text-[35px]'}`}>
-              {card.title.map((part, index) => (
-                <React.Fragment key={index}>
-                  <span className={part.color}>{part.text}</span>
-                  {card.titleMultiline && index < card.title.length - 1 && <br />}
-                </React.Fragment>
-              ))}
-            </h2>
-          )}
-
-          <p className={`font-inter font-[600] text-[16px] md:text-[24px] leading-[1.4] md:leading-[1.2] tracking-[-0.5px] md:tracking-[-1.46px] whitespace-pre-line ${card.descriptionColor || 'text-white'}`}>
-            {card.description}
-          </p>
-        </div>
-
-        {card.innerImage && (
-          <div className="mt-[20px] flex-1 relative min-h-[392px] h-[551px]">
-            <div className="absolute inset-0 rounded-[11px] overflow-hidden">
-
-              <Image
-                src={card.innerImage}
-                alt="Card Internal Content"
-                fill
-                className="object-contain object-top -translate-y-[5px]"
-              />
-
-              {/* ✅ Linear gradient overlay */}
-              <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.1),rgba(0,0,0,0.1))]" />
-
-            </div>
-          </div>
-        )}
-      </div>
-    </div>
-  );
-};
-
 const Websites = () => {
-  const upperCards = CARDS_DATA.slice(0, 1);
-  const lowerCards = CARDS_DATA.slice(1, 3);
-  const [showPopup, setShowPopup] = useState(false);
-  const [showSmartPopup, setShowSmartPopup] = useState(false);
-
-  const handleCardClick = (id: string) => {
-    if (id === "prive") {
-      window.open("https://theprive.network", "_blank");
-    } else if (id === "thenetwork") {
-      setShowPopup(true);
-    }
-  };
   return (
     <section className="relative w-full pt-0 pb-[100px] px-[20px] overflow-hidden">
 
@@ -207,96 +47,56 @@ const Websites = () => {
           </p>
 
         </div>
-        {/* 🔥 TOP ROW (2/5 / 3/5) */}
-        {/* <div className="grid grid-cols-[4fr_5fr] gap-[30px] h-[460px]">
-          {upperCards.map(card => (
-            <WebsiteCard
-              key={card.id}
-              card={card}
-              onClick={handleCardClick}
-            />
-          ))}
-        </div> */}
-        <div className="grid grid-cols-1 gap-[30px] min-h-[360px] md:min-h-[460px]">
-          {upperCards.map(card => (
-            <WebsiteCard
-              key={card.id}
-              card={card}
-              onClick={handleCardClick}
-            />
-          ))}
-        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-[5fr_4fr] gap-[24px] min-h-[360px] md:min-h-[550px] ">
-          {lowerCards.map(card => (
-            <WebsiteCard
+        <div className="flex flex-col items-center gap-[30px]">
+          {CARDS.map(card => (
+            <div
               key={card.id}
-              card={card}
-              onClick={handleCardClick}
-            />
-          ))}
-        </div>
-
-        <div
-          className="w-full h-[310px] mx-auto rounded-[30px] relative overflow-hidden flex flex-col items-center justify-center text-center group cursor-pointer"
-          style={{
-            backgroundImage: "url('/asset/card5bg.png')",
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }}
-            onClick={() => setShowSmartPopup(true)}
-        >
-          <div className="absolute inset-0 bg-black/60" />
-          <div className="relative z-10 w-full max-w-[1080px] flex flex-col items-center justify-center">
-            <div className="text-left flex flex-col gap-4 items-center">
-              <h2 className="text-[32px] leading-[1.1] w-fit font-['Mencken_Std'] font-extrabold">
-                <span className="text-[#656A6B] block">Smart</span>
-                <span className="text-[#C01823] block">Services</span>
-              </h2>
-              <p className="text-white font-inter text-[16px] md:text-[24px] font-semibold leading-[140%] md:leading-[120%] tracking-[-0.5px] md:tracking-[-1.46px]">
-                backend team to support networks
+              className="w-full max-w-[1080px] h-[380px] md:h-[460px] rounded-[24px] md:rounded-[30px] overflow-hidden opacity-100 relative"
+              style={{
+                backgroundImage: `url('${card.bgImage}')`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+              }}
+            >
+              {card.overlay && (
+                <div className="absolute inset-0" style={{ background: card.overlay }} />
+              )}
+              <Image
+                src={card.logo}
+                alt={`${card.id} logo`}
+                width={card.logoWidth}
+                height={card.logoHeight}
+                className="absolute top-[20px] left-[20px] md:top-[30px] md:left-[30px] z-10 object-contain w-auto h-[22px] md:h-auto max-w-[60%] md:max-w-none"
+              />
+              <p className={`absolute left-0 right-0 mx-auto top-1/2 -translate-y-1/2 md:top-auto md:translate-y-0 md:bottom-[180px] z-10 ${card.textMaxWidth} px-[20px] text-white text-center font-['Mencken_Std'] font-normal not-italic text-[22px] md:text-[40px] leading-[120%] tracking-[0px]`}>
+                {card.text}
               </p>
+              {card.tagline && (
+                <p className="absolute left-0 right-0 bottom-[24px] md:bottom-[60px] z-10 px-[16px] text-white text-center font-inter text-[13px] md:text-[32px] leading-[140%] md:leading-[120%]">
+                  {card.tagline.text}{' '}
+                  <span className="bg-[#C01823] font-semibold px-[4px] md:px-[8px]">{card.tagline.highlight}</span>
+                </p>
+              )}
+              <a
+                href={card.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Open ${card.id} website`}
+                className="absolute top-[14px] right-[14px] md:top-[30px] md:right-[30px] z-20 w-[28px] h-[28px] md:w-[36px] md:h-[36px] rounded-full bg-white/30 backdrop-blur-sm flex items-center justify-center">
+                <Image
+                  src="/asset/arrow.svg"
+                  alt="Link Arrow"
+                  width={14}
+                  height={14}
+                  className="object-contain w-[11px] h-[11px] md:w-[14px] md:h-[14px]"
+                />
+              </a>
             </div>
-          </div>
+          ))}
         </div>
 
       </div>
-      {showPopup && (
-        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50">
-          <div className="bg-white rounded-2xl p-8 max-w-sm text-center shadow-xl">
-            <h2 className="text-lg font-semibold mb-2 text-black">
-              Website Redesign is Underway
-            </h2>
-            <p className="text-sm text-gray-600 mb-4">
-              We’re currently improving the experience. Please check back soon.
-            </p>
-            <button
-              onClick={() => setShowPopup(false)}
-              className="px-4 py-2 bg-black text-white rounded-md cursor-pointer"
-            >
-              Close
-            </button>
-          </div>
-        </div>
-      )}
-      {showSmartPopup && (
-  <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50">
-    <div className="bg-white rounded-2xl p-8 max-w-sm text-center shadow-xl">
-      <h2 className="text-lg font-semibold mb-2 text-black">
-        Smart Services – Coming Soon
-      </h2>
-      <p className="text-sm text-gray-600 mb-4">
-        We're building something powerful to support networks behind the scenes. Stay tuned.
-      </p>
-      <button
-        onClick={() => setShowSmartPopup(false)}
-        className="px-4 py-2 bg-black text-white rounded-md cursor-pointer"
-      >
-        Close
-      </button>
-    </div>
-  </div>
-)}
     </section>
   );
 };
